@@ -33,5 +33,6 @@ def main():
     exportfile(groupedrawsuperfile,outputto, "test agg of superfile")
 
 
+#standard boilerplate to point compiler to start point of program.
 if __name__ == '__main__':
     main()
