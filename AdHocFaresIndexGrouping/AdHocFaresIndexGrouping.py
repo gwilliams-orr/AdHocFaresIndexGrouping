@@ -15,22 +15,25 @@ def main():
                                       'Product Code':'category','Product Primary Code':'category','class':'category','sector':'category','ticket_type':'category'}
                                )
 
+
+
     #filtering the data by the field "Category" and the criteria category == season
     print("now filtering the data\n")
     superfilefiltered = rawsuperfile[rawsuperfile['Category']=='season']
 
     #printing out generic information about the filtered superfile
-    print("information about the data\n")
-    print(type(superfilefiltered))
-    print(superfilefiltered.head(5))
-    print(superfilefiltered.info())
+    #print("information about the data\n")
+    #print(type(superfilefiltered))
+    #print(superfilefiltered.head(5))
+    #print(superfilefiltered.info())
 
     # the filtered data is being grouped by the fields sector and carrier TOC, with the fields Earings and journeys being summed
     print("now grouping and summing the data")
-    groupedrawsuperfile = superfilefiltered.groupby(['sector','Carrier TOC / Third Party Code','Category'])['Adjusted Earnings Amount','Operating Journeys'].agg('sum')
+    
+    rawsuperfile = rawsuperfile.groupby(['Carrier TOC / Third Party Code','Origin Code','Destination Code','Route Code','Product Code','sector','ticket_type','class','Category'])['Adjusted Earnings Amount','Operating Journeys'].agg('sum')
     
     #the filtered, grouped and summed data is then exported as a csv file using the imported module sharedfunctions
-    exportfile(groupedrawsuperfile,outputto, "test agg of superfile")
+    exportfile(rawsuperfile,outputto, "test agg of superfile")
 
 
 #standard boilerplate to point compiler to start point of program.
