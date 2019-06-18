@@ -18,8 +18,8 @@ def main():
 
 
     #filtering the data by the field "Category" and the criteria category == season
-    print("now filtering the data\n")
-    superfilefiltered = rawsuperfile[rawsuperfile['Category']=='season']
+    #print("now filtering the data\n")
+    #superfilefiltered = rawsuperfile[rawsuperfile['Category']=='season']
 
     #printing out generic information about the filtered superfile
     #print("information about the data\n")
@@ -27,7 +27,7 @@ def main():
     #print(superfilefiltered.head(5))
     #print(superfilefiltered.info())
 
-    # the filtered data is being grouped by the fields sector and carrier TOC, with the fields Earings and journeys being summed
+    # the full superfile is being grouped by the fields sector and carrier TOC, with the fields Earings and journeys being summed
     print("now grouping and summing the data")
     
     groupedsuperfile = rawsuperfile.groupby(['Carrier TOC / Third Party Code','Route Code','Origin Code','Destination Code','Product Code','Regulated_Status','Category','sector'],observed=True)['Adjusted Earnings Amount','Operating Journeys'].agg('sum')
