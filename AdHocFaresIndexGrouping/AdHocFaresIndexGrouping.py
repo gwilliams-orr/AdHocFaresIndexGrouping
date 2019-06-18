@@ -30,7 +30,7 @@ def main():
     # the filtered data is being grouped by the fields sector and carrier TOC, with the fields Earings and journeys being summed
     print("now grouping and summing the data")
     
-    rawsuperfile = rawsuperfile.groupby(['Carrier TOC / Third Party Code','Origin Code','Destination Code','Route Code','Product Code','sector','ticket_type','class','Category'])['Adjusted Earnings Amount','Operating Journeys'].agg('sum')
+    rawsuperfile = rawsuperfile.groupby(['class'])['Adjusted Earnings Amount','Operating Journeys'].agg('sum')
     
     #the filtered, grouped and summed data is then exported as a csv file using the imported module sharedfunctions
     exportfile(rawsuperfile,outputto, "test agg of superfile")
